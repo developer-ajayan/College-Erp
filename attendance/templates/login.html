@@ -1,0 +1,102 @@
+{% extends 'base_accounts.html' %}
+
+
+{% block content %}
+
+
+ 
+          <div class="col-lg-6">
+              <div class="card2 card border-0 px-4 py-5">
+                  <div class="row mb-4 px-3">
+                      <h6 class="mb-0 mr-4 mt-2">Welcome to {{college.name|default:"CMS COMMUNITY"}}</h6>
+                    </div>
+                    
+                    <div class="row px-3 mb-4">
+                        <div class="line"></div>
+                    </div>
+                  <form class="login-form" id="login-user" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                  
+                  
+                    {% include 'includes/form.html' %}
+                  
+
+                    <div class="row mb-3 px-3">
+                      <button type="submit" class="btn btn-blue text-center">Login</button>
+                    </div>
+                  
+                  </form>
+                  <div class="row mb-4 px-3">
+                    <small class="font-weight-bold">Don't have an account? <a href="{% url 'register-user' %}" class="text-danger ">Register</a></small>
+                </div>
+
+              </div>
+          </div>
+      
+      
+  
+{% endblock %}
+
+{% block javascript %}
+<script>
+    $(function() {
+        $('#login-user').submit(function(e) {
+            e.preventDefault();
+            var _this = $(this)
+            $('.err-msg').remove();
+            var el = $('<div>')
+            el.addClass("alert alert-danger err-msg")
+            el.hide()
+            if (_this[0].checkValidity() == false) {
+                _this[0].reportValidity();
+                return false;
+            }
+            start_loader();
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": '{{csrf_token}}'
+                },
+                url: "{% url 'login-user' %}",
+                data: new FormData($(this)[0]),
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST',
+                dataType: 'json',
+                error: err => {
+                    console.log(err)
+                    alert_toast("An error occured", 'error');
+                    end_loader();
+                },
+                success: function(resp) {
+                    if (typeof resp == 'object' && resp.status == 'success') {
+                        el.removeClass("alert alert-danger err-msg")
+                        location.href = "{% url 'home-page' %}"
+                    } else if (resp.status == 'failed' && !!resp.msg) {
+                        el.text(resp.msg)
+                    } else {
+                        el.text("An error occured", 'error');
+                        end_loader();
+                        console.err(resp)
+                    }
+                    _this.prepend(el)
+                    el.show('slow')
+                    $("html, body, .modal").scrollTop(0);
+                    end_loader()
+                }
+            })
+        })
+    })
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+

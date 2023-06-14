@@ -1,0 +1,195 @@
+.banner-img{
+  width: 100%;
+  height: 1000px;
+}
+.cover1{
+  font-weight: 900;
+  font-size: 110px;
+}
+/*.cover {
+    height: 360px;
+    background-image: url('https://goo.gl/NA3iQP');
+    background-position: center center;
+    background-size: cover;
+  }  
+.heading {
+  font-family: 'Telefon Black';
+  font-size: 143px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ccc;
+  transition: font-size 0.3s;
+}
+
+.heading::first-letter {
+  color: #db2d8e;
+}*/
+
+
+
+/* events    */
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
+
+@font-face {
+  font-family: 'Telefon Black';
+  src: url('https://raw.githubusercontent.com/arnabmunshi/fontface/master/TelefonBlack/Telefon-Black.woff2') format('woff2'), url('https://raw.githubusercontent.com/arnabmunshi/fontface/master/TelefonBlack/Telefon-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+.page-event {
+  background-color: #212121;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  font-family: "Varela Round", sans-serif;
+}
+.cover {
+  background-color: rgb(54, 53, 58);
+  height: 360px;
+  background-image: url('https://goo.gl/NA3iQP');
+  background-position: center center;
+  background-size: cover;
+  }
+.heading {
+  font-family: 'Telefon Black';
+  font-size: 243px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 20vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ccc;
+  transition: font-size 0.3s;
+}
+    
+.heading::first-letter {
+      color: #db2d8e;
+  }
+  
+  
+.upcoming-sec {
+  padding: 5vh 0;
+  border-bottom: 1px solid #ccc;
+  }
+.heading {
+  font-size: 30px;
+  color: #fff;
+  }
+  
+.upcoming-event-list {
+  color: #ccc;
+}
+.event-block {
+  padding: 5vh 0;
+  border-bottom: 1px solid #ccc;
+  }
+.sec-1,
+.sec-2 {
+  padding-bottom: 3vh;
+  }
+.month {
+  text-transform: uppercase;
+  color: #db2d8e;
+  font-size: 30px;            
+}
+.month-date-devider {
+  width: 5vh;
+  margin: 1vh 0;
+  background-color: #3cbfaf;
+  height: 5px;
+}
+.date {
+  font-size: 60px;
+  font-weight: bolder;
+  line-height: normal;
+}
+.title {
+  padding-left: 20px;
+  vertical-align: top;
+  font-size: 30px;
+}
+       
+      
+      
+    
+img {
+  width: 100%;
+    }
+      
+      
+.title {
+    font-size: 30px;
+    padding-bottom: 2vh;
+  }
+        .venue {}
+          table {}
+td {
+  vertical-align: top;
+  }
+i {
+  color: #db2d8e;
+  padding-left: 3px;
+  padding-right: 10px;
+}
+              
+.dim-color a {
+  color: rgba(204, 204, 204, 0.30);
+}
+  
+
+.time {
+padding-bottom: 3vh;
+}
+
+td {
+  vertical-align: top;
+  }
+  i {
+    color: #db2d8e;
+    padding-right: 10px;
+  }
+  
+  .dim-color {
+    color: rgba(204, 204, 204, 0.30);
+  }
+}
+}
+}
+.sort-story {
+ /* padding-bottom: 3vh; */
+-webkit-box-orient: vertical;
+display: -webkit-box;
+/* //webkit-line-clamp: 3; */
+overflow: hidden;
+}
+.group-of-btn {
+padding-top: 3vh;
+}
+.book-ticket {
+background-color: #3cbfaf;
+color: #fff;
+margin-bottom: 10px;
+}
+}
+}
+}
+}
+
+.page-heading {
+text-transform: uppercase;
+color: #fff;
+padding-bottom: 17px;
+word-break: break-all;
+padding: 10px;
+}
+
+.page-heading::first-letter {
+color: #db2d8e;
+}
+
+

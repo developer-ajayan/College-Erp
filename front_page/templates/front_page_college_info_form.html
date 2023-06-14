@@ -1,0 +1,66 @@
+{% extends 'base.html' %}{% load static %}
+{% block headerContent %} 
+
+<style>
+    /* CSS Styles for the form */
+    .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .form-container h2 {
+        text-align: center;
+    }
+    .form-container label {
+        display: block;
+        margin-top: 10px;
+    }
+    .form-container input[type="text"],
+    .form-container input[type="email"],
+    .form-container input[type="url"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+    }
+    .form-container input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+    .form-container input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    .form-container .error {
+        color: red;
+        margin-top: 5px;
+    }
+    label{
+    color: white;
+    }
+</style>
+{% endblock headerContent %}
+
+{% block pageContent %}
+<div class="form-container">
+        <h2><label>Create College </label></h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="error">
+                        {% for error in field.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <div class="py-4">
+
+                <input type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+{% endblock pageContent %}

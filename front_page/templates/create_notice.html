@@ -1,0 +1,86 @@
+{% load static %}
+{% block headerContent %} 
+<style>
+    /* Add your custom CSS styles here */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+    
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    
+    form {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    
+    textarea {
+        height: 100px;
+    }
+    
+    .btn {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn:hover {
+        background-color: #45a049;
+    }
+</style>    
+{% endblock headerContent %}
+
+
+{% block pageContent %}
+
+<div class="form-container">
+    <form method="post" enctype="multipart/form-data" action="{% url 'create_notice' %}">
+        {% csrf_token %}
+        {% for field in form %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <div class="error">
+                    {% for error in field.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    </form>
+</div>
+{% endblock pageContent %}
+

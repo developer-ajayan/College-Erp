@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Attendance Management System</title>
+    <link rel="icon" href="{{ MEDIA_URL }}/default/ams-icon.png">
+    <link rel="stylesheet" href="{% static 'assets/font-awesome/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/select2/dist/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/mdb-blogtemplate/css/mdb.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/DataTables/datatables.min.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="{% static 'assets/default/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/default/css/custom.css' %}">
+    {% block headerContent %} {% endblock headerContent %}
+</head>
+
+<body class=" bg-dark bg-gradient bg-opacity-50">
+
+    {% block TopNavigation %} 
+    
+    <header>
+        <!-- Intro settings -->
+        <style>
+            #intro {
+                /* Margin to fix overlapping fixed navbar */
+                margin-top: 58px;
+            }
+            
+            @media (max-width: 991px) {
+                #intro {
+                    /* Margin to fix overlapping fixed navbar */
+                    margin-top: 45px;
+                }
+            }
+        </style>
+        <!-- 
+        <div class="top-nav fixed-top bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="ps-0 mb-0 py-2">
+                            <li class="px-2">{{ college.phone|default:"9999999999"}}</li>
+                            <li class="px-2">{{ college.email |default:"ajayettan@ajayan.com"}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="ps-0 mb-0 py-2 login-ul">
+                            <li class="px-2"><a class="nav-link p-0" aria-current="page" href="#">Staff Login</a></li>
+                            <li class="px-2"><a class="nav-link p-0" aria-current="page" href="#">Student Login<a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow border-bottom py-4 border-top">
+            <div class="container">
+                <!-- Navbar brand -->
+                <a class="navbar-brand" target="_blank" href="{% url 'home-page' %}">
+                    <img src="{{college.logo.url}}" height="16" alt="" loading="lazy" style="margin-top: -3px;" />
+                </a>
+                <span class="h4">{{college.name}}</span>
+                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+                <div class="collapse navbar-collapse" id="navbarExample01">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="topNav">
+                        <li class="nav-item">
+                            <a class="nav-link " href="{% url 'home-page' %}">Dashboard</a>      
+                     </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{% url 'front_page' %}#mission-section">Vision</a>      
+                     </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="{% url 'front_page' %}#notice-board">Notice Board</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+    {% endblock TopNavigation %}
+    <main class="py-5">
+        <div class="mb-3">
+            {% if messages %}
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}} w-100 rounded-0 mb-2 redirect-msg">
+                        <div class="d-flex w-100">
+                            <div class="col-auto flex-shrink-1 flex-grow-1">{{ message }}</div>
+                            <div class="col-auto text-center">
+                                <button class="btn-close btn-sm text-sm" type="button" onclick="$(this).closest('.alert').remove()"></button>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>{% endif %} 
+            {% block pageContent %} 
+            
+            
+    <div class="wrapper-main">
+        <div class="video-wrapper">
+            <div class="video-wrapper-inner">
+                <video autoplay muted loop>
+                  <source src="{{video_widget.video.url}}" type="video/mp4">
+                  <source src="{{video_widget.video.url}}" type="video/ogg">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <div class="mission-section " id="mission-section">
+            <div class="top-image"></div>
+            <div class="mission-section-inner pt-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="flip">
+                                <div class="front">
+                                    <img class="w-100" src="{% static 'img/vision01.jpg' %}">
+                                   <h1 class="fa-2x text-center text-muted">VISION</hi>
+                                </div>
+                                <div class="back">
+                                   <h2 class="text-muted">Vision</h2>
+                                   <p>{{video_widget.vision}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="flip">
+                                <div class="front">
+                                    <img class="w-100" src="{% static 'img/mission01.jpg' %}">
+                                   <h1 class="fa-2x text-center text-muted">MISSION</hi>
+                                </div>
+                                <div class="back">
+                                   <h2 class="text-muted">Mission</h2>
+                                   <p>{{video_widget.mission}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="flip">
+                                <div class="front">
+                                    <img class="w-100" src="{% static 'img/core-values.jpg' %}">
+                                   <h1 class="fa-2x text-center text-muted">CORE VALUES</hi>
+                                </div>
+                                <div class="back">
+                                   <h2 class="text-muted">Core Values</h2>
+                                   <p>{{video_widget.core_values}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-image"></div>
+        </div>
+
+        <div class="notice-board py-5 bg-white" id="notice-board">
+            <div class="notice-board-inner">
+                <div class="container">
+                    <h2 class="mb-3 text-center font-weight-bold">Notice Board</h2>
+                      <div class="owl-carousel owl-theme">
+                        <div class="item p-3">
+                          <h4 class="text-center">Swipe</h4>
+                          <p class="text-center">Swipe</p>
+                        </div>
+
+                        <div class="item p-3">
+                          <h4 class="text-center">Swipe</h4>
+                          <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+
+                      </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bg-light text-lg-start">
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © {% now 'Y' %} Copyright:
+                <a class="text-dark" href="#" target="_blank">oretnom23</a>
+            </div>
+        </footer>
+    </div>
+            
+            {% endblock pageContent %}
+
+        </div>
+    </main>
+
+
+
+    <script src="{% static 'assets/font-awesome/js/all.min.js' %}"></script>
+    <script src="{% static 'assets/default/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/DataTables/datatables.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/mdb-blogtemplate/js/mdb.min.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+
+    <script type="text/javascript" src="{% static 'assets/default/js/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/default/js/custom.js' %}"></script>
+    <script>
+        $(function() {
+            $('#topNav .nav-link').each(function() {
+                var current = '{{ request.get_full_path | urlencode }}'
+                if (current == $(this).attr('href')) {
+                    $(this).parent().addClass('active')
+                }
+            })
+        })
+    </script>
+</body>
+</html>

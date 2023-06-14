@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Start a New Topic{% endblock %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'boards/css/simplemde.min.css' %}">
+{% endblock %}
+
+{% block javascript %}
+  <script src="{% static 'boards/js/simplemde.min.js' %}"></script>
+  <script>
+    var simplemde = new SimpleMDE();
+  </script>
+{% endblock %}
+
+{% block pageContent %}
+<div>
+    <h3>Create New Topic</h3>
+</div>
+  <form method="post" class="mb-4" novalidate>
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-success my-3">Post</button>
+  </form>
+{% endblock %}
